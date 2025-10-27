@@ -1,0 +1,31 @@
+# Archivos del sistema macOS
+.DS_Store
+**/.DS_Store
+
+# Archivos temporales y de caché
+*.log
+*.tmp
+*.cache
+*.bak
+*.swp
+
+# Configuración de editores
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Dependencias PHP (si llegas a usar Composer)
+vendor/
+composer.lock
+
+# Archivos de entorno
+.env
+.env.local
+.env.*.local
+
+# Carpetas de despliegue o build
+/build/
+/cache/
+/tmp/
+dist/
