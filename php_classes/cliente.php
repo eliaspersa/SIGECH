@@ -13,20 +13,40 @@ class Cliente {
     private string $rfc;
     private string $sexo;
 
-    public function crearSolicitud() {
-        // Implementación futura
+    // Constructor para facilitar creación del cliente
+    public function __construct(string $nombres, string $primerApellido, string $segundoApellido, string $email) {
+        $this->nombres = $nombres;
+        $this->primerApellido = $primerApellido;
+        $this->segundoApellido = $segundoApellido;
+        $this->email = $email;
+        $this->estatus = "ACTIVO"; // Valor por defecto
     }
 
-    public function obtenerSolicitudes() {
-        // Implementación futura
+    // Getters necesarios para Solicitud::notificarRegistro()
+    public function getNombre(): string {
+        return $this->nombres . ' ' . $this->primerApellido . ' ' . $this->segundoApellido;
     }
 
-    public function actualizarDatos() {
-        // Implementación futura
+    public function getEmail(): string {
+        return $this->email;
     }
 
-    public function agregarDireccion() {
-        // Implementación futura
+    // Setters útiles (por si los necesitas después)
+    public function setTelefono(string $telefono): void {
+        $this->telefono = $telefono;
     }
+
+    public function setIngresosMensuales(float $ingresos): void {
+        $this->ingresosMensuales = $ingresos;
+    }
+
+    // Métodos futuros
+    public function crearSolicitud() { /* Implementación futura */ }
+
+    public function obtenerSolicitudes() { /* Implementación futura */ }
+
+    public function actualizarDatos() { /* Implementación futura */ }
+
+    public function agregarDireccion() { /* Implementación futura */ }
 }
 ?>
