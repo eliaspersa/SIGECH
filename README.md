@@ -19,27 +19,60 @@ El sistema permitirá a los clientes registrar solicitudes, cargar documentos, c
 
 | Categoría | Herramienta | Motivo de Elección |
 |----------|-------------|-------------------|
-| Lenguaje Backend | **PHP** | Permite desarrollo web ágil con integración eficiente a PostgreSQL y cuenta con una amplia comunidad y soporte. |
-| Base de Datos | **PostgreSQL** | Fiable, seguro y orientado a transacciones, ideal para operaciones financieras. |
-| Frontend | HTML5, CSS3, JavaScript | Desarrollo de interfaces claras, responsivas y compatibles con navegadores modernos. |
-| IDE / Editor | **Visual Studio Code** | Ligero, gratuito, extensible y con soporte para depuración y control de versiones. |
-| Control de Versiones | **Git + GitHub** | Historial de cambios, colaboración y despliegue controlado. |
+| Lenguaje Backend | **PHP** | Lenguaje ampliamente utilizado en aplicaciones web con soporte continuo y comunidad activa. |
+| Base de Datos | **PostgreSQL** | Fiable, seguro y adecuado para operaciones financieras y consultas relacionales. |
+| Frontend | HTML5, CSS3, JavaScript | Permite interfaces responsivas y amigables para el usuario final. |
+| Editor / IDE | **Visual Studio Code** | Ligero, extensible y con soporte integrado para Git y depuración. |
+| Control de Versiones | **Git + GitHub** | Permite colaboración, historial de cambios y despliegue ordenado. |
 
 ## Diseño del Sistema
 
-El sistema se desarrolla bajo una arquitectura **MVC** (Modelo-Vista-Controlador) y programación orientada a objetos.  
-Se retoma el diagrama de clases elaborado durante la etapa de análisis del proyecto, el cual define las entidades principales del dominio, tales como:
+El sistema se desarrolla usando **Programación Orientada a Objetos (POO)** y evolucionará hacia una arquitectura **MVC (Modelo-Vista-Controlador)** conforme avance el desarrollo.
 
-- Cliente
-- Solicitud
-- Documento
-- Crédito
-- Pago
-- Usuario y Roles
+### Modelo de Dominio (Clases del Proyecto)
 
-El diagrama de clases y demás documentación se encuentra disponible en la carpeta `/docs` del repositorio.
+Actualmente se cuenta con las siguientes clases base del modelo:
+
+- `cliente.php` — Datos personales del solicitante.
+- `direccion.php` — Información de ubicación relacionada al cliente.
+- `solicitud.php` — Representa la solicitud de crédito y su estado.
+- `documento.php` — Archivos y documentos adjuntos.
+- `asesor.php` — Usuario interno encargado de revisar solicitudes.
+
+El **diagrama de clases** que representa estas entidades se encuentra en:
+class_diagram.png
+
+## Estructura Actual del Proyecto
+SIGECH/
+│
+├── php_classes/ # Clases del modelo (POO)
+│ ├── asesor.php
+│ ├── cliente.php
+│ ├── direccion.php
+│ ├── documento.php
+│ └── solicitud.php
+│
+├── class_diagram.png # Diagrama de clases UML utilizado como base
+│
+└── README.md # Documentación del proyecto
+
+Esta estructura crecerá posteriormente para incorporar controladores, vistas y conexión con la base de datos PostgreSQL.
 
 ## Instalación (Versión en Desarrollo)
 
 1. Clonar el repositorio:
-git clone https://github.com/eliaspersa/SIGECH.git
+   `git clone https://github.com/eliaspersa/SIGECH.git`
+2. Abrir el proyecto en Visual Studio Code.
+3. Verificar las clases dentro de la carpeta `php_classes` para comenzar la implementación de lógica de negocio.
+4. Posteriormente, se integrará la base de datos y la interfaz del sistema.
+
+## Estado del Proyecto
+
+El proyecto se encuentra en la fase de **modelado y definición de clases**.  
+Las siguientes iteraciones incluirán conexión a base de datos, controladores y vistas.
+
+## Autor
+
+**Elías Pérez Saldaña**  
+Desarrollador Web y Analista de Datos  
+GitHub: https://github.com/eliaspersa
