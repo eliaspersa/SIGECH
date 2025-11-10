@@ -44,11 +44,15 @@ class_diagram.png
 
 ## Estructura Actual del Proyecto
 SIGECH/
+
   php_classes/
+
     cliente.php
     ...
   class_diagram.png
+
   README.md
+  
 
 
 Esta estructura crecerá posteriormente para incorporar controladores, vistas y conexión con la base de datos PostgreSQL.
