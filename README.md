@@ -44,17 +44,12 @@ class_diagram.png
 
 ## Estructura Actual del Proyecto
 SIGECH/
-│
-├── php_classes/ # Clases del modelo (POO)
-│ ├── asesor.php
-│ ├── cliente.php
-│ ├── direccion.php
-│ ├── documento.php
-│ └── solicitud.php
-│
-├── class_diagram.png # Diagrama de clases UML utilizado como base
-│
-└── README.md # Documentación del proyecto
+  php_classes/
+    cliente.php
+    ...
+  class_diagram.png
+  README.md
+
 
 Esta estructura crecerá posteriormente para incorporar controladores, vistas y conexión con la base de datos PostgreSQL.
 
