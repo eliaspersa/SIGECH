@@ -15,9 +15,9 @@
 *.sublime-workspace
 *.sublime-project
 
-# Dependencias PHP (si llegas a usar Composer)
+# Dependencias PHP (si usamos Composer)
 vendor/
-composer.lock
+composer-setup.php
 
 # Archivos de entorno
 .env
@@ -29,3 +29,6 @@ composer.lock
 /cache/
 /tmp/
 dist/
+
+#Logs
+correo_log.txt

@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/php_classes/cliente.php';
 require_once __DIR__ . '/php_classes/solicitud.php';
-require_once __DIR__ . '/php_classes/captchaValidator.php';
+require_once __DIR__ . '/php_classes/CaptchaValidator.php';
 
 // Token simulado (en producción lo envía el formulario)
 $token = "TOKEN_RECAPTCHA_DE_EJEMPLO";

@@ -3,18 +3,18 @@
 require_once __DIR__ . '/php_classes/cliente.php';
 require_once __DIR__ . '/php_classes/solicitud.php';
 
-// Crear cliente con el constructor desde cliente.php. Esto es así para cumplir con el ejemplo de implmentación
-$cliente = new Cliente(
-    "Juan",
-    "Pérez",
-    "Ramírez",
-    "correo@example.com"
-);
+// Simular datos reales
+$cliente = new Cliente("Luis", "Hernández", "Rojas", "correo@example.com");
+$solicitud = new Solicitud($cliente, 700000.00);
 
-// Crear solicitud
-$solicitud = new Solicitud($cliente, 850000.00);
+$idUsuarioCliente = 6;
 
-// Enviar notificación
-$solicitud->notificarRegistro();
+// Guardar en BD
+if ($solicitud->guardarEnBD($idUsuarioCliente)) {
 
-echo "Solicitud registrada y notificación generada.";
+    $solicitud->notificarRegistro();
+
+    echo "Solicitud guardada en la base y correo enviado.";
+} else {
+    echo "Error al guardar solicitud.";
+}
