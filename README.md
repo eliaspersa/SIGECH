@@ -159,6 +159,6 @@ Las próximas iteraciones incluirán login, panel administrativo, carga de docum
 
 ## Autor
 
-**Elías Pérez Saldaña**  
+**eliaspersa*  
 Desarrollador Web y Analista de Datos  
 GitHub: https://github.com/eliaspersa

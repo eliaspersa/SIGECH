@@ -9,9 +9,9 @@ class ConexionBD {
         if (self::$conexion === null) {
             $host = "localhost";
             $puerto = "5432";
-            $dbname = "sigech";
+            $dbname = "SIGECH";
             $usuario = "postgres";
-            $password = "password";
+            $password = "123456";
 
             $dsn = "pgsql:host=$host;port=$puerto;dbname=$dbname";
 
