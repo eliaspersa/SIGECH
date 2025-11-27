@@ -31,7 +31,7 @@ class Cliente {
         return $this->email;
     }
 
-    // Setters útiles (por si los necesitas después)
+    // Setters útiles (por si se necesitan después)
     public function setTelefono(string $telefono): void {
         $this->telefono = $telefono;
     }

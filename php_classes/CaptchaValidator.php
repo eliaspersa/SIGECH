@@ -3,7 +3,7 @@
 class CaptchaValidator {
 
     /**
-     * Verifica el token enviado por Google reCAPTCHA con la API de validación.
+     * Verificar el token enviado por Google reCAPTCHA con la API de validación.
      */
     public static function validarCaptcha(string $token): bool {
 
