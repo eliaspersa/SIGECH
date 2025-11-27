@@ -20,7 +20,7 @@ class Correo {
 
         try {
 
-            // Configuración del servidor SMTP (ajusta si usas servidor real)
+            // Configuración del servidor SMTP (ajustar si se usa servidor real)
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
