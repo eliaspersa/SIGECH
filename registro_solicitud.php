@@ -6,14 +6,15 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body class="bg-light">
 
 <div class="container mt-5">
-    <div class="card shadow">
+    <div class="card shadow sigech-card">
         <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">Registro de Solicitud</h3>
+            <h3 class="mb-0 sigech-title">Registro de Solicitud</h3>
         </div>
 
         <div class="card-body">

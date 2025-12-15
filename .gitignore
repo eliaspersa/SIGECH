@@ -32,3 +32,6 @@ dist/
 
 #Logs
 correo_log.txt
+
+
+php_classes/CaptchaValidator.php

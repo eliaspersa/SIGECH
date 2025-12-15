@@ -8,7 +8,7 @@ class CaptchaValidator {
     public static function validarCaptcha(string $token): bool {
 
         // Clave secreta (se configurará en producción)
-        $secretKey = "pedir_la_clave_a_google";
+        $secretKey = "6LfbRhYsAAAAAEnHl9k01SHTouos23LlVR5ghG9W";
 
         // Endpoint oficial de verificación
         $url = "https://www.google.com/recaptcha/api/siteverify";
