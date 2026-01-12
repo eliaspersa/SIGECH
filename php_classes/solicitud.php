@@ -7,46 +7,39 @@ class Solicitud {
     private string $folio;
     private string $fechaSolicitud;
     private float $montoSolicitado;
-    private float $ingresoDeclarado;   
+    private float $ingresoDeclarado;
     private string $estatus;
     private ?string $motivoRechazo;
-    private Cliente $cliente; 
+    private Cliente $cliente;
 
-    public function __construct(Cliente $cliente, float $montoSolicitado, float $ingresoDeclarado ) {
+    public function __construct(Cliente $cliente, float $montoSolicitado, float $ingresoDeclarado) {
         $this->cliente = $cliente;
         $this->montoSolicitado = $montoSolicitado;
         $this->ingresoDeclarado = $ingresoDeclarado;
-        $this->folio = ""; // Se generará más adelante
+
+        $this->folio = ""; // se asigna al guardar en BD
         $this->fechaSolicitud = date("Y-m-d");
-        $this->estatus = "EN REVISION";
+
+        // ATENCION: esto es solo “visual” en el objeto; en BD realmente se guarda 'registrada'
+        $this->estatus = "registrada";
+
         $this->motivoRechazo = null;
     }
 
-    public function generarFolio() {
-        // Implementación futura
-    }
+    // ---------------------------
+    // Acciones futuras (placeholder)
+    // ---------------------------
+    public function generarFolio() {}
+    public function generarConfirmacion() {}
+    public function verEstado() {}
+    public function subirDocumento() {}
+    public function autorizarSolicitud() {}
+    public function rechazarSolicitud() {}
 
-    public function generarConfirmacion() {
-        // Implementación futura
-    }
-
-    public function verEstado() {
-        // Implementación futura
-    }
-
-    public function subirDocumento() {
-        // Implementación futura
-    }
-
-    public function autorizarSolicitud() {
-        // Implementación futura
-    }
-
-    public function rechazarSolicitud() {
-        // Implementación futura
-    }
-
-    public function notificarRegistro() {
+    // ---------------------------
+    // Funciones actuales
+    // ---------------------------
+    public function notificarRegistro(): void {
         $mensaje = "
             <p>Estimado(a) {$this->cliente->getNombre()},</p>
             <p>Su solicitud ha sido registrada correctamente.</p>
@@ -60,7 +53,7 @@ class Solicitud {
         );
     }
 
-    public function generarComprobantePDF() {
+    public function generarComprobantePDF(): void {
         require_once __DIR__ . '/PdfService.php';
 
         $html = "
@@ -77,23 +70,20 @@ class Solicitud {
 
     public function validarAntesDeRegistrar(string $tokenCaptcha): bool {
         require_once __DIR__ . '/CaptchaValidator.php';
-
         return CaptchaValidator::validarCaptcha($tokenCaptcha);
     }
-
-    
-
 
     public function guardarEnBD(int $idUsuarioCliente): bool {
         require_once __DIR__ . '/../conexion.php';
 
         $db = ConexionBD::obtener();
 
-        $this->folio = uniqid("SOL-"); // generar folio temporal (puedes mejorarlo)
+        // Generar folio
+        $this->folio = uniqid("SOL-");
 
         $query = "
             INSERT INTO solicitudes (
-                id_usuario_cliente, folio_unico, estatus, monto_solicitado,  ingreso_declarado,  creado_por
+                id_usuario_cliente, folio_unico, estatus, monto_solicitado, ingreso_declarado, creado_por
             ) VALUES (
                 :id_usuario_cliente, :folio_unico, :estatus, :monto_solicitado, :ingreso_declarado, :creado_por
             )
@@ -105,15 +95,18 @@ class Solicitud {
         $stmt->execute([
             ':id_usuario_cliente' => $idUsuarioCliente,
             ':folio_unico'        => $this->folio,
-            ':estatus'            => "registrada",
+            ':estatus'            => 'registrada',
             ':monto_solicitado'   => $this->montoSolicitado,
             ':ingreso_declarado'  => $this->ingresoDeclarado,
             ':creado_por'         => $idUsuarioCliente
         ]);
 
         $resultado = $stmt->fetch();
-
         return $resultado ? true : false;
     }
 
+    // getter 
+    public function getFolio(): string {
+        return $this->folio;
+    }
 }

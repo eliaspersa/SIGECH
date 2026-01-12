@@ -14,6 +14,9 @@ $ingreso = floatval($_POST['ingreso'] ?? 0);
 $cliente = new Cliente($nombre, $apP, $apM, $correo);
 $solicitud = new Solicitud($cliente, $monto, $ingreso);
 
+$isAjax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+          strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+
 // Usuario dueño de esta solicitud (se haría login después)
 $idUsuarioCliente = 6;
 
@@ -24,6 +27,7 @@ $titulo = "";
 $mensaje = "";
 $detalles = [];
 
+
 if (!CaptchaValidator::validarCaptcha($tokenCaptcha)) {
     $titulo = "CAPTCHA inválido";
     $mensaje = "No se puede continuar porque la verificación anti-bots falló.";
@@ -32,19 +36,42 @@ if (!CaptchaValidator::validarCaptcha($tokenCaptcha)) {
 } else {
     if ($solicitud->guardarEnBD($idUsuarioCliente)) {
         $solicitud->notificarRegistro();
-        $solicitud->generarComprobantePDF();
+
+        if (!$isAjax) {
+          $solicitud->generarComprobantePDF();
+        }
 
         $ok = true;
         $titulo = "Solicitud registrada correctamente";
         $mensaje = "La solicitud se registró en la base de datos y se ejecutaron las acciones de notificación y comprobante.";
         $detalles[] = "Correo de notificación: enviado (PHPMailer).";
-        $detalles[] = "Comprobante PDF: generado.";
+        if (!$isAjax) {
+          $detalles[] = "Comprobante PDF: generado.";
+        } else {
+          $detalles[] = "Comprobante PDF: omitido en modo AJAX.";
+        }
     } else {
         $titulo = "Error al registrar la solicitud";
         $mensaje = "Ocurrió un problema al guardar la solicitud en la base de datos.";
         $detalles[] = "Revisa la conexión a BD y los logs.";
     }
 }
+
+if ($isAjax) {
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode([
+        'ok' => $ok,
+        'titulo' => $titulo,
+        'mensaje' => $mensaje,
+        'detalles' => $detalles,
+        // folio solo si fue ok (se genera en guardarEnBD)
+        'folio' => $ok ? ($solicitud->getFolio() ?? null) : null
+    ], JSON_UNESCAPED_UNICODE);
+
+    exit;
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
